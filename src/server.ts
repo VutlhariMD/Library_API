@@ -1,16 +1,21 @@
 import bodyParser from 'body-parser';
 import express, {Express}  from 'express';
 import { loggerMiddleware } from './middleware/logger';
+import {userRouter} from './route/users'
 
 const app  : Express = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
+//Built in middle wares  and important for parsing incoming json data from the requestbody
+//that is convert Json data from the requestbody to a javascript object.
+// we use use to mount  middleware functions
 
 app.use(express.json());
 app.use(bodyParser.json());
 
 app.use(loggerMiddleware)
+app.use("/v1/users",userRouter)
 
 
 
@@ -21,6 +26,7 @@ app.use((req, res)=>{
 });
 
 app.listen(PORT , 
+    //callback function that runs only afte the server starts
     ()=>{ console.log (`Server is running on http://localhost:${PORT}`)}
 );
 
