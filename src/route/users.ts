@@ -1,5 +1,6 @@
 import {Router,Request,Response} from 'express'
 import {body,param, validationResult} from 'express-validator';
+import { error } from 'node:console';
 
 export const userRouter= Router();
 
@@ -13,11 +14,12 @@ let users =[
  })
 //http://localhost:3000/2
 //[it validates the string and if the string is correct or not]
-userRouter.get("/:id", [param("id").isInt().withMessage("ID must be an integer").toInt()], (req: Request<{id : string}>,res: Response)=> {
+userRouter.get("/:id", [param("id").isInt().withMessage("ID must be an integer")], (req: Request<{id : string}>,res: Response)=> {
      const errors = validationResult(req);
     
      console.log(errors,"errors from ecpress-validator middleware")
-     if(errors.isEmpty()){
+     if(!errors.isEmpty()){
+        //if the errors is not emppty there it means an error had occured there it must return 400 status.
         return res.status(400).json({errors: errors.array()});
 
      }
@@ -30,3 +32,22 @@ userRouter.get("/:id", [param("id").isInt().withMessage("ID must be an integer")
      }
      res.status(200).json(user);
  })
+ userRouter.post("/",
+    //
+    [body("name").notEmpty().withMessage("Name is required"),
+    body("Email").isEmail().withMessage("Please enter a valid email address"),
+    (req: Request, res: Response) => {
+      const errors= validationResult(req);
+      if(!errors.isEmpty) {
+        return res.status(400).json({errors: errors.array()})
+        console.log(req);
+      }
+        const {name, email}=req.body;
+        const newUser= {id: users.length +1 , name, email};
+        users.push(newUser);
+
+        res.status(201).json(newUser);
+      
+
+    }
+ ])

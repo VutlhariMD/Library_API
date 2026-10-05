@@ -5,7 +5,7 @@ import {userRouter} from './route/users'
 
 const app  : Express = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 9000;
 
 //Built in middle wares  and important for parsing incoming json data from the requestbody
 //that is convert Json data from the requestbody to a javascript object.
@@ -15,7 +15,13 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 app.use(loggerMiddleware)
+//mount the router middleware
+//any request that starts with "/v1/users" will be deligated to the 
+// module router
+// meaning any request that have the "/v1/users" will be passed down to router
+//http://localhost:3000/v1/users/2
 app.use("/v1/users",userRouter)
+
 
 
 
