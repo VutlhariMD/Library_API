@@ -8,7 +8,7 @@ let users =[
 export const getAllUsers = (req: Request,res: Response) =>{
     res.status(200).json(users);
 }
-export const getUserById = (req:Request, res: Response) =>{
+export const getUserById = (req: Request<{id : string}>, res: Response) =>{
      const {id}=req.params  // this retrieves the id value from the url
      const user = users.find((user) => user.id === parseInt(id));
     
@@ -17,6 +17,7 @@ export const getUserById = (req:Request, res: Response) =>{
         return res.status(404).send("User not found")
      }
      res.status(200).json(user);
+     
 }
 
 export const addUser=(req: Request, res: Response)=>{

@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express, {Express}  from 'express';
 import { loggerMiddleware } from './middleware/logger';
 import {userRouter} from './route/users'
+import { notFoundHandler } from './middleware/error';
 
 const app  : Express = express();
 
@@ -22,6 +23,8 @@ app.use(loggerMiddleware)
 //http://localhost:3000/v1/users/2
 app.use("/v1/users",userRouter)
 
+app.use(notFoundHandler)
+
 
 
 
@@ -35,5 +38,4 @@ app.listen(PORT ,
     //callback function that runs only afte the server starts
     ()=>{ console.log (`Server is running on http://localhost:${PORT}`)}
 );
-
     
