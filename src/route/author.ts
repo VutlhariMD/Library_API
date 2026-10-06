@@ -31,3 +31,20 @@ authorRouter.get("/", (req:Request, res: Response)=>{
     res.status(200).json(author);
     }
  )
+ //Add a new author
+authorRouter.post("/",
+    [body("name").notEmpty().withMessage("Please enter  the author name"),
+     body("Email").isEmail().withMessage("Please enter a valid email")
+    ],
+    (req: Request,res: Response)=>{
+
+     const errors= validationResult(req)
+     if(!errors.isEmpty){
+        return res.status(400).json({errors: errors.array()})
+    }
+    const {name,email}= req.body;
+    const newUser = {id: authors.length+1, name, email}   
+    authors.push (newUser)
+    res.status(200).json(newUser);
+    }
+)
