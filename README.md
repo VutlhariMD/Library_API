@@ -41,29 +41,14 @@ Open the project folder
 In VS Code, open your library-api project.
 
 Then open the terminal:
-
-Ctrl + `
-
 or go to Terminal → New Terminal.
 
 2. Install dependencies
 
 If you haven't installed the packages yet:
-
 npm install
 
-This installs the dependencies from your package.json.
-
 3. Start the server
-
-If your package.json has a dev script such as:
-
-"scripts": {
-  "dev": "tsx src/server.ts"
-}
-
-run:
-
 npm run dev
 
 You should see something similar to:
@@ -74,19 +59,13 @@ Server is running on port 5000
 Open your browser and go to:
 
 http://localhost:5000/authors
-
 Or use Postman to test the different endpoints.
 
 For example:
-
 GET http://localhost:5000/authors
 
 and:
-
-GET http://localhost:5000/books
-If you haven't created the project yet
-
-You can set it up with:
+GET http://localhost:5000/book
 
 
 
