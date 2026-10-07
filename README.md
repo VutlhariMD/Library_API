@@ -28,7 +28,11 @@ The system uses an **in-memory array** to store data, meaning no database is req
 * Update author       |PUT  | http://localhost:9000/v1/authors/:id
 * Delete author       |DELETE | http://localhost:9000/v1/authors/:id
 
-
+* Create a new book |POST | http://localhost:9000/books
+* List all books   |GET  | http://localhost:9000/books
+* Get book by id      |GET  | http://localhost:9000/books/:id 
+* Update book       |PUT  | http://localhost:9000/books/:id
+* Delete book      |DELETE | http://localhost:9000/books/:id
 
 
 
