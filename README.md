@@ -29,3 +29,14 @@ The system uses an **in-memory array** to store data, meaning no database is req
 * **express-validator**
 * **Postman** for API testing
 * In-memory arrays for data storage
+
+
+
+---
+
+# Conclusion
+
+The Library REST API provides a simple backend system for managing authors and books. It demonstrates important REST API concepts including **CRUD operations, routing, middleware, validation, relationships, HTTP status codes, error handling, query parameters, and API testing**.
+
+The project is designed to provide a foundation that can later be extended with a database, authentication, authorization, and additional library functionality.
+
