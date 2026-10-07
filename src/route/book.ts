@@ -56,10 +56,43 @@ booksRouter.get("/:id", (req:Request<{id: string}>, res: Response)=>{
 booksRouter.delete("/:id",(req:Request<{id:string}>,res:Response)=>{
        
     const {id}= req.params
-    const bookTodelete=books.filter((book)=>{
+      const bookExists = books.find(
+            (book) => book.bookId === parseInt(id)
+        );
+
+        if (!bookExists) {
+            return res.status(404).json({
+                message: "Book not found"
+            });
+        }
+
+    books=books.filter((book)=>{
         return book.bookId !== parseInt(id);
     })
 
     res.status(200).json({message: "Book deleted successfully"})
+
+})
+booksRouter.put("/:id", (req: Request<{id: string}>, res: Response)=>{
+
+    const{id}=req.params
+    const bookToUpdate=books.find((book)=>{
+         book.bookId===parseInt(id);
+    });
+
+
+    if(!bookToUpdate){
+        return res.status(404).json({
+                message: "Book is not found."
+            });
+    }
+
+    bookToUpdate.title=req.body.title;
+    bookToUpdate.category=req.body.category;
+    bookToUpdate.year=req.body.year;
+    bookToUpdate.authorId=req.body.authorId;
+
+  return res.status(200).json({message : "The book has been updated successfully", author: bookToUpdate})
+
 
 })
