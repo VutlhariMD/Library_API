@@ -48,3 +48,37 @@ authorRouter.post("/",
     res.status(200).json(newUser);
     }
 )
+authorRouter.delete("/:id",
+   
+    (req: Request<{id:string}>, res: Response)=>{
+     
+        const {id}= req.params
+        const FilteredAuthors=authors.filter((author)=>{
+            return author.id !== parseInt(id)})
+        
+        res.status(200).json({
+            message: "Author deleted successfully"
+        })
+    }
+)
+
+authorRouter.put("/:id",
+    (req:Request<{id: string}>, res: Response)=>{
+        
+        const{id}=req.params
+        const userToUpdate=authors.find((author)=>{
+        return author.id == parseInt(id);  
+         
+        });
+        
+            if (!userToUpdate) {
+            return res.status(404).json({
+                message: "Author is not found."
+            });
+        } 
+            userToUpdate.name=req.body.name;
+            userToUpdate.email = req.body.email;
+
+            return res.status(200).json({message : "Author updated successfully", author: userToUpdate})
+
+ })
