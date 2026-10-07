@@ -43,3 +43,14 @@ booksRouter.get("/", (req:Request,res: Response)=>{
 
     res.status(200).json(books);
 });
+booksRouter.get("/:id", (req:Request<{id: string}>, res: Response)=>{
+  const {id}=req.params;
+  const bookToFind = books.find((book)=> book.bookId === parseInt(id))
+
+   if(!bookToFind){
+    res.status(404).json({message: "The book is not found"});
+   }
+   res.status(200).json(bookToFind)
+
+
+})
