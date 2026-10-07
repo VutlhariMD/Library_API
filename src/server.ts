@@ -4,6 +4,7 @@ import { loggerMiddleware } from './middleware/logger';
 import {userRouter} from './route/users'
 import { notFoundHandler } from './middleware/error';
 import { authorRouter } from './route/author';
+import {booksRouter} from './route/book'
 
 const app  : Express = express();
 
@@ -23,9 +24,10 @@ app.use(loggerMiddleware)
 // meaning any request that have the "/v1/users" will be passed down to router
 //http://localhost:3000/v1/users/2
 app.use("/v1/users",userRouter)
-//http://localhost:3000/v1/authors
+//http://localhost:9000/v1/authors
 app.use("/v1/authors", authorRouter)
-
+//http://localhost:9000/books
+app.use("/books", booksRouter)
 app.use(notFoundHandler)
 
 

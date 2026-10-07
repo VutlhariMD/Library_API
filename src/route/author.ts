@@ -4,7 +4,7 @@ import {body,param, validationResult} from "express-validator"
 
 export const  authorRouter = Router();
 
-let authors= [
+export let authors= [
     {id: 1, name : "Kgothatso Ramodike", email: "kgothi@gmail"},
     {id: 2, name : "Nyiko Ram", email: "nyiko@gmail"},
     {id: 3, name : "Nhlayiseko", email: "nhlayiseko@gmail"}
