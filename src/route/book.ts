@@ -2,9 +2,6 @@ import {Router,Request,Response} from 'express'
 import {param,body, validationResult } from 'express-validator';
 import { authors } from './author';
 
-
-
-
 export const booksRouter = Router();
 
 let books = [
@@ -77,7 +74,7 @@ booksRouter.put("/:id", (req: Request<{id: string}>, res: Response)=>{
 
     const{id}=req.params
     const bookToUpdate=books.find((book)=>{
-         book.bookId===parseInt(id);
+        return book.bookId===parseInt(id);
     });
 
 
