@@ -20,6 +20,47 @@ The system uses an **in-memory array** to store data, meaning no database is req
 * * Prevent invalid data from being added
 * Prevent duplicate books
 * Receive appropriate HTTP status codes and error messages
+  
+## Endpoints
+* Create a new Author |POST | http://localhost:9000/v1/authors
+* List all Authors    |GET  | http://localhost:9000/v1/authors
+* Get user by id      |GET  | http://localhost:9000/v1/authors/:id 
+* Update author       |PUT  | http://localhost:9000/v1/authors/:id
+* Delete author       |DELETE | http://localhost:9000/v1/authors/:id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Technologies Used
 
